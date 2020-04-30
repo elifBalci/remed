@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">remed</string>
+    <string name="app_name">REMED</string>
+    <string name="email" />
+    <string name="password" />
+    <string name="login" />
+    <string name="register" />
+    <string name="b_r_sayfaya_ge">öbür sayfaya geç</string>
 </resources>
