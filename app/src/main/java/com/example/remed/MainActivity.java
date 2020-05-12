@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,10 +14,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent i = new Intent(getBaseContext(), AfterLoginPage.class);
-        i.putExtra("username","buse");
-        startActivity(i);
-        finish();// Eğer sayfa açıldıktan sonra bu sayfaya tekrar Back butonu ile dönülmesini istemiyorsak finish() metodu ile Activty'i sonlandırıyoruz.
+        Button button = (Button) findViewById(R.id.button);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AfterLoginPage.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 

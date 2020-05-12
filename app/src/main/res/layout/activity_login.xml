@@ -21,7 +21,7 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/email"
+            android:hint="E-mail"
             android:inputType="textEmailAddress" />
 
         <EditText
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/password"
+            android:hint="Password"
             android:inputType="textPassword" />
 
         <LinearLayout
@@ -44,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="?attr/colorButtonNormal"
-                android:text="@string/login" />
+                android:text="LOGIN"
+                tools:targetApi="p" />
 
             <Button
                 android:id="@+id/register"
@@ -53,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/darker_gray"
-                android:text="@string/register" />
+                android:text="REGISTER" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
