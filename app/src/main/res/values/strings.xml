@@ -5,4 +5,10 @@
     <string name="login" />
     <string name="register" />
     <string name="b_r_sayfaya_ge">öbür sayfaya geç</string>
+    <string name="set_reminder">SET REMINDER</string>
+    <string name="enter_the_notes">Enter the notes:</string>
+    <string name="enter_the_starting_hour">Enter the starting hour:</string>
+    <string name="choose_the_hour_period_eg_remind_me_in_every_hour">Choose the hour period: (eg: remind me in every .. hour)</string>
+    <string name="how_many_days_will_you_use_the_medicine">How many days will you use the medicine?</string>
+    <string name="enter_the_medicine_name">Enter the medicine name:</string>
 </resources>

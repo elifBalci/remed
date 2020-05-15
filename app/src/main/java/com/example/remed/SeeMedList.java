@@ -1,13 +1,12 @@
 package com.example.remed;
 
-import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
 
-public class SeeList extends AppCompatActivity {
+public class SeeMedList extends AppCompatActivity {
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.see_list);
+        setContentView(R.layout.see_med_list);
     }
 }

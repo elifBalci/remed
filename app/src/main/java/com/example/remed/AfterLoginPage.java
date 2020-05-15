@@ -18,7 +18,7 @@ public class AfterLoginPage extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(AfterLoginPage.this, SeeList.class);
+                Intent intent2 = new Intent(AfterLoginPage.this, SeeMedList.class);
                 startActivity(intent2);
             }
         });
