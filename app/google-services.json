@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "742487238212",
+    "firebase_url": "https://remed-1ea0d.firebaseio.com",
+    "project_id": "remed-1ea0d",
+    "storage_bucket": "remed-1ea0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742487238212:android:0be46ba0e0ac3e8d1dbe11",
+        "android_client_info": {
+          "package_name": "com.example.remed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "742487238212-cfdt48ik5u668pfo9kldu6ld5btcfig3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDllD_jfKjXlDNAjfJgL4FpvHHeFgTrZ6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "742487238212-cfdt48ik5u668pfo9kldu6ld5btcfig3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
