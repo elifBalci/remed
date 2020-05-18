@@ -52,7 +52,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SEARCH"
-            android:layout_gravity="center"  />
+            android:layout_gravity="center"
+            android:onClick="searchByName"/>
+
+        <WebView
+            android:id="@+id/wv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="WebViewLayout" />
 
         <TextView
             android:id="@+id/textView3"
@@ -78,7 +85,8 @@
             android:layout_height="wrap_content"
             android:text="SEARCH"
             android:layout_marginTop="5dp"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:onClick="searchByBarcode"/>
 
         <TextView
             android:id="@+id/textView4"
@@ -95,7 +103,8 @@
             android:layout_height="wrap_content"
             android:text="SCAN"
             android:layout_marginTop="10dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            />
 
     </LinearLayout>
 

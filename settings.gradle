@@ -1,2 +1,3 @@
 rootProject.name='remed'
 include ':app'
+include ':mylibrary'
