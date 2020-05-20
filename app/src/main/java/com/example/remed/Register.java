@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Register extends AppCompatActivity {
-    public static  String DISPLAY_NAME_KEY = "display_name_key";
+    public static String DISPLAY_NAME_KEY = "display_name_key";
 
     private EditText emailView;
     private EditText userNameView;
@@ -46,11 +46,11 @@ public class Register extends AppCompatActivity {
         passwordView = findViewById(R.id.register_password);
         confirmPasswordView = findViewById(R.id.register_password_2);
 
-        if(!confirmPasswordView.getText().toString().isEmpty()){
+        if (!confirmPasswordView.getText().toString().isEmpty()) {
             confirmPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                    if(actionId == R.integer.register_form_finished || actionId == EditorInfo.IME_NULL)
+                    if (actionId == R.integer.register_form_finished || actionId == EditorInfo.IME_NULL)
                         attemptRegistration();
                     return false;
                 }
@@ -58,11 +58,11 @@ public class Register extends AppCompatActivity {
         }
     }
 
-    public void signUp(View v){
+    public void signUp(View v) {
         attemptRegistration();
     }
 
-    private void attemptRegistration(){
+    private void attemptRegistration() {
         emailView.setError(null);
         userNameView.setError(null);
 
@@ -118,7 +118,7 @@ public class Register extends AppCompatActivity {
                     Intent intent = new Intent(Register.this, Login.class);
                     finish();
                     startActivity(intent);
-                } else if(!task.isSuccessful()) {
+                } else if (!task.isSuccessful()) {
                     // If sign in fails, display a message to the user.
                     Log.w("Create User", "createUserWithEmail:failure", task.getException());
                     Toast.makeText(Register.this, "Authentication failed.",
@@ -128,10 +128,9 @@ public class Register extends AppCompatActivity {
         });
     }
 
-    private void saveDisplayName(){
+    private void saveDisplayName() {
         String displayName = userNameView.getText().toString();
-        SharedPreferences sharedPreferences = getSharedPreferences("shared_pref",0);
+        SharedPreferences sharedPreferences = getSharedPreferences("shared_pref", 0);
         sharedPreferences.edit().putString(DISPLAY_NAME_KEY, displayName).apply();
     }
-
 }
