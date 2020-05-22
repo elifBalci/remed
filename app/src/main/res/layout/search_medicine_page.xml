@@ -104,6 +104,7 @@
             android:text="SCAN"
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
+            android:onClick="searchByScan"
             />
 
     </LinearLayout>
