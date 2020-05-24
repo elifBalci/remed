@@ -25,7 +25,7 @@ public class AddMedicine extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_medicine_page);
+        setContentView(R.layout.add_medicine_page);
     }
 
     public void addByName (View v) {
