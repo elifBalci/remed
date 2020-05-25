@@ -1,5 +1,6 @@
 package com.example.remed;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -14,6 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import jxl.Cell;
@@ -21,7 +27,8 @@ import jxl.Sheet;
 import jxl.Workbook;
 
 public class AddMedicine extends AppCompatActivity  {
-
+    protected static String filename = "medicineList";
+    private FileOutputStream fOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +52,7 @@ public class AddMedicine extends AppCompatActivity  {
                 if (z.getContents().contains(medName.concat(" "))) {
                     found = true;
                     Toast.makeText(getApplicationContext(), "Medicine found!", Toast.LENGTH_LONG).show();
+                    saveMedicine(medName);
                     //eklenecek
                 }
             }
@@ -54,6 +62,7 @@ public class AddMedicine extends AppCompatActivity  {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -85,6 +94,7 @@ public class AddMedicine extends AppCompatActivity  {
             }
 
         } catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -100,6 +110,18 @@ public class AddMedicine extends AppCompatActivity  {
         integrator.setPrompt("Scanning Code");
         integrator.initiateScan();
     }
+
+    private void saveMedicine(String s){
+        try {
+            fOut = openFileOutput(filename, Context.MODE_PRIVATE);
+            fOut.write(s.getBytes());
+            fOut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -144,15 +166,17 @@ public class AddMedicine extends AppCompatActivity  {
                             Toast.makeText(getApplicationContext(), "Medicine found!", Toast.LENGTH_LONG).show();
                             String name = s.getCell(0, r).getContents();
                             name = name.substring(0, name.indexOf(" "));
+                            //saveMedicine(name);
                             //eklenecek
                         }
                     }
 
                     if(!found){
-                        Toast.makeText(getApplicationContext(), "Medicine not found!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Medicine not found!", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (Exception e){
+                    e.printStackTrace();
                 }
             }
             else{
