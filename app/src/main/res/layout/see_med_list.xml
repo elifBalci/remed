@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".SeeMedList">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -14,22 +15,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="323dp"
-            android:onClick="seeList"
-            android:text="@string/show_my_meds" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_recycler_view"
+            android:layout_width="307dp"
+            android:layout_height="526dp"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/list_item" />
 
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text=""
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
     </LinearLayout>
 
