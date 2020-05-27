@@ -20,7 +20,7 @@
             android:layout_width="307dp"
             android:layout_height="526dp"
             android:scrollbars="vertical"
-            tools:listitem="@layout/list_item" />
+            tools:listitem="@layout/item_content" />
 
 
     </LinearLayout>
