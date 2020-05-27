@@ -26,7 +26,6 @@ import jxl.Workbook;
 
 public class AddMedicine extends AppCompatActivity  {
 
-    protected static String filename = "medicineList";
     private FileOutputStream fileout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,20 +49,16 @@ public class AddMedicine extends AppCompatActivity  {
                 Cell z = s.getCell(0, r);
                 if (z.getContents().contains(medName.concat(" "))) {
                     found = true;
-                    //Toast.makeText(getApplicationContext(), "Medicine found!", Toast.LENGTH_LONG).show();
-                    //eklenecek
-
 
                     File myFile = new File("/data/data/com.example.remed/files/listfile.txt");
                     myFile.createNewFile();
-                    //FileOutputStream fileout=openFileOutput("oldlist.txt", MODE_PRIVATE);
 
                     try {
 
                         fileout=new FileOutputStream(myFile,true);
                         OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
                         outputWriter.append(medName);
-                        outputWriter.append('\0');
+                        outputWriter.append('\n');
                         outputWriter.close();
 
                         Toast.makeText(getBaseContext(), "File saved successfully!", Toast.LENGTH_SHORT).show();
@@ -107,16 +102,14 @@ public class AddMedicine extends AppCompatActivity  {
                     String name = s.getCell(0, r).getContents();
                     name = name.substring(0, name.indexOf(" "));
 
-                    File myFile = new File(filename);
+                    File myFile = new File("/data/data/com.example.remed/files/listfile.txt");
                     myFile.createNewFile();
-                    //FileOutputStream fileout=openFileOutput("oldlist.txt", MODE_PRIVATE);
 
                     try {
 
-                        fileout=new FileOutputStream(myFile,true);
                         OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
                         outputWriter.append(name);
-                        outputWriter.append('\0');
+                        outputWriter.append('\n');
                         outputWriter.close();
 
                         Toast.makeText(getBaseContext(), "File saved successfully!", Toast.LENGTH_SHORT).show();
