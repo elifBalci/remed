@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,17 +21,12 @@ public class SeeMedList extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    //private static final String TAG = "MainActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.see_med_list);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
 
         mRecyclerView.setHasFixedSize(true);
 
@@ -51,31 +48,24 @@ public class SeeMedList extends AppCompatActivity {
 
     private void readDataFromFile() throws IOException{
 
-        FileInputStream inputStream = null;
-        StringBuilder builder = new StringBuilder();
-
         try
         {
-            FileInputStream fin=new FileInputStream("/data/data/com.example.remed/files/listfile.txt");
-            char ch = (char) fin.read();
-            String mediName = null;
-
-            while ( ( ch = (char) fin.read()) != -1) {
-
-                while( ( ch = (char) fin.read()) != ' ' ){
-
-                    mediName += ch;
-
-                }
+            File file=new File("/data/data/com.example.remed/files/listfile.txt");    //creates a new file instance
+            FileReader fr=new FileReader(file);   //reads the file
+            BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
+            StringBuffer sb=new StringBuffer();    //constructs a string buffer with no characters
+            String mediName=null;
+            while((mediName=br.readLine())!=null)
+            {
                 Medicines medicines = new Medicines(mediName);
                 viewItems.add(medicines);
-                mediName = null;
             }
 
-            fin.close();
-
-        } catch(Exception e){
-            System.out.println(e);
+            fr.close();    //closes the stream and release the resources
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
         }
 
     }
