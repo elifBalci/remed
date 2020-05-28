@@ -61,7 +61,7 @@ public class AddMedicine extends AppCompatActivity  {
                         outputWriter.append('\n');
                         outputWriter.close();
 
-                        Toast.makeText(getBaseContext(), "File saved successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), "Medicine added successfully!", Toast.LENGTH_SHORT).show();
                         fileout.close();
 
                     }
@@ -89,8 +89,8 @@ public class AddMedicine extends AppCompatActivity  {
             Workbook wb = Workbook.getWorkbook(is);
             Sheet s = wb.getSheet(0);
             int row = s.getRows();
-            EditText  et = (EditText) findViewById(R.id.etForBarAdd);
-            String barcode = et.getText().toString();
+            EditText  etbar = (EditText) findViewById(R.id.etForBarAdd);
+            String barcode = etbar.getText().toString();
 
             boolean found = false;
 
@@ -98,7 +98,6 @@ public class AddMedicine extends AppCompatActivity  {
                 Cell z = s.getCell(1, r);
                 if(z.getContents().equals(barcode)){
                     found = true;
-                    Toast.makeText(getApplicationContext(), "Medicine found!", Toast.LENGTH_LONG).show();
                     String name = s.getCell(0, r).getContents();
                     name = name.substring(0, name.indexOf(" "));
 
@@ -106,15 +105,14 @@ public class AddMedicine extends AppCompatActivity  {
                     myFile.createNewFile();
 
                     try {
-
+                        fileout=new FileOutputStream(myFile,true);
                         OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
                         outputWriter.append(name);
                         outputWriter.append('\n');
                         outputWriter.close();
 
-                        Toast.makeText(getBaseContext(), "File saved successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), "Medicine added successfully!", Toast.LENGTH_SHORT).show();
                         fileout.close();
-
                     }
                     catch (Exception e) {
                         e.printStackTrace();
@@ -184,10 +182,30 @@ public class AddMedicine extends AppCompatActivity  {
                         Cell z = s.getCell(1, r);
                         if(z.getContents().equals(code_value)){
                             found = true;
-                            Toast.makeText(getApplicationContext(), "Medicine found!", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "Medicine found!", Toast.LENGTH_LONG).show();
                             String name = s.getCell(0, r).getContents();
                             name = name.substring(0, name.indexOf(" "));
-                            //eklenecek
+
+                            File myFile = new File("/data/data/com.example.remed/files/listfile.txt");
+                            myFile.createNewFile();
+
+                            try {
+
+                                fileout=new FileOutputStream(myFile,true);
+                                OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
+                                outputWriter.append(name);
+                                outputWriter.append('\n');
+                                outputWriter.close();
+
+                                Toast.makeText(getBaseContext(), "Medicine added successfully!", Toast.LENGTH_SHORT).show();
+                                fileout.close();
+
+                            }
+                            catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                            break;
                         }
                     }
 
