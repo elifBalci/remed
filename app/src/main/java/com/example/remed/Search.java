@@ -50,13 +50,13 @@ public class Search extends AppCompatActivity  {
                 Cell z = s.getCell(0, r);
                 if (z.getContents().contains(medName.concat(" "))) {
                     found = true;
-                    Toast.makeText(getApplicationContext(), "Medicine found!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Medicine found!", Toast.LENGTH_SHORT).show();
                     ourBrow.loadUrl("http://www.ilacweb.com/" + medName);
                 }
             }
 
             if (!found) {
-                Toast.makeText(getApplicationContext(), "Medicine not found!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Medicine not found!", Toast.LENGTH_SHORT).show();
             }
 
         } catch (Exception e) {
@@ -84,7 +84,7 @@ public class Search extends AppCompatActivity  {
                     Cell z = s.getCell(1, r);
                     if(z.getContents().equals(barcode)){
                         found = true;
-                        Toast.makeText(getApplicationContext(), "Medicine found!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Medicine found!", Toast.LENGTH_SHORT).show();
                         String name = s.getCell(0, r).getContents();
                         name = name.substring(0, name.indexOf(" "));
                         ourBrow.loadUrl("http://www.ilacweb.com/" + name);
@@ -92,7 +92,7 @@ public class Search extends AppCompatActivity  {
                 }
 
                 if(!found){
-                    Toast.makeText(getApplicationContext(), "Medicine not found!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Medicine not found!", Toast.LENGTH_SHORT).show();
                 }
 
             } catch (Exception e){
@@ -157,7 +157,7 @@ public class Search extends AppCompatActivity  {
                         Cell z = s.getCell(1, r);
                         if(z.getContents().equals(code_value)){
                             found = true;
-                            Toast.makeText(getApplicationContext(), "Medicine found!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Medicine found!", Toast.LENGTH_SHORT).show();
                             String name = s.getCell(0, r).getContents();
                             name = name.substring(0, name.indexOf(" "));
                             ourBrow.loadUrl("http://www.ilacweb.com/" + name);
@@ -165,7 +165,7 @@ public class Search extends AppCompatActivity  {
                     }
 
                     if(!found){
-                        Toast.makeText(getApplicationContext(), "Medicine not found!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Medicine not found!", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (Exception e){
