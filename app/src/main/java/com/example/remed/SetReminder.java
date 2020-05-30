@@ -3,8 +3,10 @@ package com.example.remed;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -38,15 +40,29 @@ public class SetReminder extends AppCompatActivity {
                     EditText et2 = (EditText) findViewById(R.id.editText7);
                     String notes = et2.getText().toString();
                     AlarmReceiver.setAlarmText(medName +   ": "  + notes);
-
                     startAlarmManager();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SetReminder.this);
+                    builder.setMessage("Reminder setted for: " + medName.toUpperCase());
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+
+                    builder.setNegativeButton("CANCEL THE ALARM", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            stopAlarmManager();
+                        }
+                    });
+                    builder.show();
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
         });
-
-        //stopAlarmManager();
     }
 
     public void startAlarmManager() throws ParseException {
