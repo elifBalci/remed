@@ -14,8 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 
@@ -25,12 +29,17 @@ import jxl.Workbook;
 
 
 public class AddMedicine extends AppCompatActivity  {
-
+    private File file = new File("/data/data/com.example.remed/files/listfile.txt");
     private FileOutputStream fileout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_medicine_page);
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addByName (View v) {
@@ -43,42 +52,14 @@ public class AddMedicine extends AppCompatActivity  {
             EditText et = (EditText) findViewById(R.id.etForNameAdd);
             String medName = et.getText().toString().toUpperCase();
 
-            boolean found = false;
-
             for (int r = 0; r < row; r++) {
                 Cell z = s.getCell(0, r);
                 if (z.getContents().contains(medName.concat(" "))) {
-                    found = true;
-
-                    File myFile = new File("/data/data/com.example.remed/files/listfile.txt");
-                    myFile.createNewFile();
-
-                    try {
-
-                        fileout=new FileOutputStream(myFile,true);
-                        OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
-                        outputWriter.append(medName);
-                        outputWriter.append('\n');
-                        outputWriter.close();
-
-                        Toast.makeText(getBaseContext(), "Medicine added successfully!", Toast.LENGTH_SHORT).show();
-                        fileout.close();
-
-                    }
-                    catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    break;
-
+                    if(saveMed(medName))
+                        break;
                 }
             }
-
-            if (!found) {
-                Toast.makeText(getApplicationContext(), "Medicine not found!", Toast.LENGTH_LONG).show();
-            }
-
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -101,31 +82,11 @@ public class AddMedicine extends AppCompatActivity  {
                     String name = s.getCell(0, r).getContents();
                     name = name.substring(0, name.indexOf(" "));
 
-                    File myFile = new File("/data/data/com.example.remed/files/listfile.txt");
-                    myFile.createNewFile();
-
-                    try {
-                        fileout=new FileOutputStream(myFile,true);
-                        OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
-                        outputWriter.append(name);
-                        outputWriter.append('\n');
-                        outputWriter.close();
-
-                        Toast.makeText(getBaseContext(), "Medicine added successfully!", Toast.LENGTH_SHORT).show();
-                        fileout.close();
-                    }
-                    catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    saveMed(name);
                     break;
                 }
             }
-
-            if(!found){
-                Toast.makeText(getApplicationContext(), "Medicine not found!", Toast.LENGTH_LONG).show();
-            }
-
-        } catch (Exception e){
+        } catch (Exception ignored){
         }
     }
 
@@ -186,34 +147,11 @@ public class AddMedicine extends AppCompatActivity  {
                             String name = s.getCell(0, r).getContents();
                             name = name.substring(0, name.indexOf(" "));
 
-                            File myFile = new File("/data/data/com.example.remed/files/listfile.txt");
-                            myFile.createNewFile();
-
-                            try {
-
-                                fileout=new FileOutputStream(myFile,true);
-                                OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
-                                outputWriter.append(name);
-                                outputWriter.append('\n');
-                                outputWriter.close();
-
-                                Toast.makeText(getBaseContext(), "Medicine added successfully!", Toast.LENGTH_SHORT).show();
-                                fileout.close();
-
-                            }
-                            catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
+                            saveMed(name);
                             break;
                         }
                     }
-
-                    if(!found){
-                        Toast.makeText(getApplicationContext(), "Medicine not found!", Toast.LENGTH_LONG).show();
-                    }
-
-                } catch (Exception e){
+                } catch (Exception ignored){
                 }
             }
             else{
@@ -223,6 +161,46 @@ public class AddMedicine extends AppCompatActivity  {
         else{
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private boolean saveMed(String medName){
+        if (medAlreadyExists(medName)){
+            Toast.makeText(getBaseContext(), "Medicine already exists!", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        try {
+            fileout=new FileOutputStream(file,true);
+            OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
+            outputWriter.append(medName);
+            outputWriter.append('\n');
+            outputWriter.close();
+
+            Toast.makeText(getBaseContext(), "Medicine added successfully!", Toast.LENGTH_SHORT).show();
+            fileout.close();
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+    private boolean medAlreadyExists(String medNametoAdd){
+        FileReader fr= null;   //reads the file
+        try {
+            fr = new FileReader(file);
+
+            BufferedReader br = new BufferedReader(fr);
+            StringBuffer sb = new StringBuffer();
+            String medName = null;
+            while((medName = br.readLine())!= null) {
+                if(medNametoAdd.equals(medName))
+                    return true;
+            }
+            fr.close();    //closes the stream and release the resources
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }
