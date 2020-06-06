@@ -26,7 +26,8 @@ public class Login extends AppCompatActivity {
     private Button loginButton;
     private Button registerButton;
 
-
+    boolean login = true;
+    static String listName ;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -46,6 +47,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void registerNewUser(View v) {
+        login = false;
         Intent intent = new Intent(this, Register.class);
         finish();
         startActivity(intent);
@@ -53,6 +55,7 @@ public class Login extends AppCompatActivity {
 
     public void signInUser(View v) {
         String email = emailView.getText().toString();
+        listName = email;
         String password = passwordView.getText().toString();
 
         if (email.equals("") || password.equals(""))
@@ -88,5 +91,17 @@ public class Login extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public String listName(){
+
+        return listName;
+
+    }
+
+    public boolean isLogin(){
+
+        return login;
+
     }
 }
