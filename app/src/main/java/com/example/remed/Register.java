@@ -33,10 +33,11 @@ public class Register extends AppCompatActivity {
     protected static SharedPreferences pref;
     protected static SharedPreferences.Editor editor;
 
+    static String listName ;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
-
 
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
@@ -67,6 +68,7 @@ public class Register extends AppCompatActivity {
         userNameView.setError(null);
 
         String email = emailView.getText().toString();
+        listName = email;
         String password = passwordView.getText().toString();
 
         boolean cancel = false;
@@ -132,5 +134,11 @@ public class Register extends AppCompatActivity {
         String displayName = userNameView.getText().toString();
         SharedPreferences sharedPreferences = getSharedPreferences("shared_pref", 0);
         sharedPreferences.edit().putString(DISPLAY_NAME_KEY, displayName).apply();
+    }
+
+    public String listName1(){
+
+        return listName;
+
     }
 }
