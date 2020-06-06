@@ -29,17 +29,23 @@ import jxl.Workbook;
 
 
 public class AddMedicine extends AppCompatActivity  {
-    private File file = new File("/data/data/com.example.remed/files/listfile.txt");
+    //private File file = new File("/data/data/com.example.remed/files/listfile.txt");
     private FileOutputStream fileout;
+
+    static String file;
+
+    private Login login = new Login();
+    private Register register = new Register();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_medicine_page);
-        try {
+        /*try {
             file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public void addByName (View v) {
@@ -169,6 +175,10 @@ public class AddMedicine extends AppCompatActivity  {
             return true;
         }
         try {
+
+            File myFile = new File(file);
+            myFile.createNewFile();
+
             fileout=new FileOutputStream(file,true);
             OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
             outputWriter.append(medName);
@@ -187,6 +197,20 @@ public class AddMedicine extends AppCompatActivity  {
     private boolean medAlreadyExists(String medNametoAdd){
         FileReader fr= null;   //reads the file
         try {
+
+            if(login.isLogin()){
+
+                file = login.listName();
+
+            }
+
+            else{
+
+                file = register.listName1();
+
+            }
+            file = "/data/data/com.example.remed/files/" + file + ".txt" ;
+
             fr = new FileReader(file);
 
             BufferedReader br = new BufferedReader(fr);
