@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SeeMedList extends AppCompatActivity {
+
+    private Login login = new Login();
+    private Register register = new Register();
 
     private RecyclerView mRecyclerView;
     private List<Object> viewItems = new ArrayList<>();
@@ -50,7 +54,22 @@ public class SeeMedList extends AppCompatActivity {
 
         try
         {
-            File file=new File("/data/data/com.example.remed/files/listfile.txt");    //creates a new file instance
+
+            String list_name;
+            if(login.isLogin()){
+
+                list_name = login.listName();
+
+            }
+
+            else{
+
+                list_name = register.listName1();
+
+            }
+            list_name = "/data/data/com.example.remed/files/" + list_name + ".txt" ;
+
+            File file=new File(list_name);    //creates a new file instance
             FileReader fr=new FileReader(file);   //reads the file
             BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream
             StringBuffer sb=new StringBuffer();    //constructs a string buffer with no characters
