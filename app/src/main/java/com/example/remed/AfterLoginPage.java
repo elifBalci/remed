@@ -49,5 +49,13 @@ public class AfterLoginPage extends AppCompatActivity {
                 startActivity(intent5);
             }
         });
+        Button button6 = (Button) findViewById(R.id.button6);
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent6 = new Intent(AfterLoginPage.this, DeleteMedicine.class);
+                startActivity(intent6);
+            }
+        });
     }
 }

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    tools:context=".AddMedicine">
+    tools:context=".DeleteMedicine">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:text="Choose an option to add the medicine to your list:"
+            android:text="Choose an option to delete a medicine from your list:"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -36,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="40dp"
-            android:text="Add with medicine name:"
+            android:text="Delete medicine by name"
             app:layout_constraintStart_toStartOf="parent" />
 
 
@@ -53,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:onClick="addByName"
+            android:onClick="deleteByName"
             android:text="ADD" />
 
         <TextView
@@ -62,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="30dp"
-            android:text="Add with barcode number:"
+            android:text="Delete medicine by barcode number:"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
@@ -80,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:onClick="addByBarcode"
+            android:onClick="deleteByBarcode"
             android:text="ADD" />
 
         <TextView
@@ -89,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="30dp"
-            android:text="Add with barcode scanning:"
+            android:text="Delete medicine by barcode scanning:"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -98,9 +97,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:onClick="addByScan"
+            android:onClick="deleteByScan"
             android:text="SCAN" />
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
