@@ -43,6 +43,14 @@
             android:text="ADD NEW MEDICINE" />
 
         <Button
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="?attr/colorButtonNormal"
+            android:text="DELETE MEDICINE" />
+
+        <Button
             android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
